@@ -691,9 +691,9 @@ export default function InformationOnHoldWebsite() {
       }
     ];
 
-    const nextIndustry = () => {
+    const nextIndustry = React.useCallback(() => {
       setCurrentIndustry((prev) => (prev + 1) % industries.length);
-    };
+    }, [industries.length]);
 
     const prevIndustry = () => {
       setCurrentIndustry((prev) => (prev - 1 + industries.length) % industries.length);
@@ -703,7 +703,7 @@ export default function InformationOnHoldWebsite() {
     React.useEffect(() => {
       const interval = setInterval(nextIndustry, 8000);
       return () => clearInterval(interval);
-    }, []);
+    }, [nextIndustry]);
 
     return (
       <div className="max-w-6xl mx-auto">
